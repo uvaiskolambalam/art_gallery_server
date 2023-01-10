@@ -66,6 +66,7 @@ module.exports = {
     }
   },
   login: async (req, res, next) => {
+    console.log("hello");
     try {
       const user = await User.findOne({ email: req.body.email });
    

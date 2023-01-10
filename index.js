@@ -3,9 +3,7 @@ const app = express()
 const cors=require('cors')
 const bodyParser =require('body-parser')
 app.use(cors())
-app.use(cors({
-    methods: ['get','POST','DELETE','UPDATE','PUT','PATCH']
-}));
+
 // const corsOptions ={
 //     origin:'http://localhost:3000', 
 //     credentials:true,            //access-control-allow-credentials:true
