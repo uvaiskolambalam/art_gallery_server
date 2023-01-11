@@ -2,7 +2,7 @@ const User = require("../models/userModel");
 const UserPost = require("../models/postModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const userHelpers = require("../../server/helpers/userHelpers");
+const userHelpers = require("../../server/helpers/userHelpers.js");
 const { response } = require("express");
 const { default: mongoose } = require("mongoose");
 
