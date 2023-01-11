@@ -2,7 +2,7 @@
 // "d38ff446639127d15b6d93b40dec156e"
 // const serviceId = "VAabb443ddb86ac9db96bfa19ef0992f0a";
 const dotenv = require('dotenv');
-dotenv.config({path: './.env'});
+dotenv.config();
 const client = require('twilio')(process.env.TWILIOACCOUNTSID,process.env.AUTHTOKEN);
 const serviceId = process.env.SERVICEID;
 
