@@ -113,7 +113,7 @@ module.exports = {
     }
       
     } catch (error) {
-      res.ststus(500).json(error)
+      res.ststus(500).json({message:'login', error})
       
     }
 
