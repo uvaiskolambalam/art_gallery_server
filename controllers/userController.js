@@ -116,9 +116,46 @@ module.exports = {
       res.ststus(500).json({message:'login', error})
       
     }
-
-   
     
+    
+    
+  },
+  changePassword: async (req, res, next) => {
+    try {
+      // console.log(req.body.passwordData, 'password');
+      const password =req.body.passwordData.password
+      const userId=req.body.passwordData.userId
+      const user = await User.findOne({ _id: userId });
+      currentPassword = user.password
+
+      const salt = await bcrypt.genSalt(10);
+      console.log(currentPassword, 'current');
+      const isMatch = await bcrypt.compare(password,currentPassword);
+      //   const hash = await bcrypt.hash(password, 10);
+      // const result = await bcrypt.compare(currentPassword, password);
+      console.log(isMatch, 'fineal');
+      if (!isMatch) {
+        const hashedPassword = await bcrypt.hash(password, salt);
+        await User.updateOne({ _id: userId },
+          {
+            $set: {
+              password:hashedPassword
+            }
+          }
+        )
+        res.status(200).json({message:"Your Password Changed",success:true})
+      } else {
+        res.status(200).json({message:"Password alredy exists",success:false})
+      }
+
+      
+
+       
+      
+    } catch (error) {
+      res.ststus(500).json({message:'login', error})
+      
+    }
   },
   userInfo: async (req, res, next) => {
     try {

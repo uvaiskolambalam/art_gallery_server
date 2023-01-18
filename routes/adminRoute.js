@@ -47,7 +47,7 @@ router.patch('/blockPost', async(req, res) => {
 })
 router.get('/getReports', async (req, res) => {
     try {
-        const reportsPosts = await UserPost.find({ reports: { $exists: true } }).populate('reports', 'user_name profileImage email ').populate('userId', 'user_name profileImage email ')
+        const reportsPosts = await UserPost.find({ reports: { $exists: true,$type: 'array',$ne: [] } }).populate('reports', 'user_name profileImage email ').populate('userId', 'user_name profileImage email ')
         res.status(200).json(reportsPosts)
     } catch (error) {
         res.status(400).json({success:false})

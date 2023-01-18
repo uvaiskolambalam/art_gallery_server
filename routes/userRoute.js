@@ -24,7 +24,8 @@ router.post('/profileImage',userController.profileImage)
 router.post('/getProfilePic', userController.getProfilePic)
 router.patch('/savePost/:id', userController.savePost)
 router.get('/getSavedPosts/:id', userController.getSavedPosts)
-router.patch('/reportPosts/:id',userController.reportPost)
+router.patch('/reportPosts/:id', userController.reportPost)
+router.patch('/changePassword',userController.changePassword)
 
 
 module.exports = router;
