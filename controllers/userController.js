@@ -194,13 +194,14 @@ module.exports = {
        const userId = req.params.id;
        const user=await User.findOne({_id:userId})
 
-       const friendsPost = await UserPost.find({userId:user.following,block:false}).populate('userId' ,'user_name profileImage')
-       .sort({createdAt:-1});
-       const currentUserPost = await UserPost.find({userId:userId,block:false}).populate('userId' ,'user_name profileImage')
-       .sort({createdAt:-1});
-
-       const timeLinePost = friendsPost.concat(currentUserPost)
+       const friendsPost = await UserPost.find({userId:user.following,block:false}).populate('userId' ,'user_name profileImage').sort({createdAt:-1})
      
+       
+       const currentUserPost = await UserPost.find({userId:userId,block:false}).populate('userId' ,'user_name profileImage').sort({createdAt:-1})
+       
+
+      const timeLinePost = currentUserPost.concat(friendsPost)
+console.log(timeLinePost,'timeLinePost');
        res.status(200).json({timeLinePost});
     
     } catch (error) {
